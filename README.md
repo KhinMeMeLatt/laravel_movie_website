@@ -3,7 +3,7 @@
 This website is created by using laravel, tailwind css, livewire and alpine.js.
 
 ## Screenshot
-![Home Page](https://github.com/KhinMeMeLatt/laravel_movie_website/home_page.JPG)
+![Home Page](https://github.com/KhinMeMeLatt/laravel_movie_website/blob/main/home_page.JPG)
 
 ## Installation
 
