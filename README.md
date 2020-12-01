@@ -1,6 +1,9 @@
 ## Movies Website
 
-This website is created by using laravel, tailwind css, livewire and alpine.js. 
+This website is created by using laravel, tailwind css, livewire and alpine.js.
+
+## Screenshot
+![Home Page](https://github.com/KhinMeMeLatt/laravel_movie_website/home_page.JPG)
 
 ## Installation
 
