@@ -2,7 +2,7 @@
     <input 
         wire:model.debounce.500ms="search" 
         type="text" 
-        class="bg-gray-800 text-sm rounded-full w-64 px-4 pl-8 py-1 focus:outline-none focus:shadow-outline" 
+        class="bg-gray-300 dark:bg-gray-800 text-sm rounded-full w-64 px-4 pl-8 py-1 focus:outline-none focus:shadow-outline" 
         placeholder="Search (Press '/' to focus)"
         x-ref="search"
         @keydown.window="
@@ -24,15 +24,15 @@
 
     @if(strlen($search) >= 2)
         <div 
-            class="z-50 absolute bg-gray-800 text-sm rounded w-64 mt-4" 
+            class="z-50 absolute bg-gray-300 dark:bg-gray-800 text-sm rounded w-64 mt-4" 
             x-show.transition.opacity="isOpen">
             @if($searchResults->count() > 0)
                 <ul>
                     @foreach($searchResults as $result)
-                        <li class="border-b border-gray-700">
+                        <li class="border-b border-gray-400 dark:border-gray-700">
                             <a 
                                 href="{{ route('movies.show',$result['id']) }}" 
-                                class="hover:bg-gray-700 px-3 py-3 flex items-center"
+                                class="hover:bg-gray-400 dark:hover:bg-gray-700 px-3 py-3 flex items-center"
                                 @if($loop->last) @keydown.tab="isOpen=false"@endif>
                             @if($result['poster_path'])
                                 <img src="https://image.tmdb.org/t/p/w92/{{ $result['poster_path'] }}" alt="poster" class="w-8">
