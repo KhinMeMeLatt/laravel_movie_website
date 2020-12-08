@@ -74,12 +74,14 @@
         <script>
             document.addEventListener('DOMContentLoaded', function () {
             var checkbox = document.querySelector('input[type="checkbox"]');
-
+            
             checkbox.addEventListener('change', function () {
                 if (checkbox.checked) {
                     document.querySelector('html').classList.add('dark');
+                    sessionStorage.setItem("darkMode","true");
                 } else {
                     document.querySelector('html').classList.remove('dark')
+                    sessionStorage.clear();
                 }
             });
             });
@@ -108,7 +110,7 @@
                 </ul>
                 <div class="flex flex-col md:flex-row items-center">
                     <label class="switch">
-                        <input type="checkbox">
+                        <input type="checkbox" id="darkMode" name="darkMode">
                         <span class="slider round"></span>
                     </label>
 
@@ -123,6 +125,12 @@
         </nav>
         @yield('content')
         <livewire:scripts>
+        <script>
+            if(sessionStorage.darkMode) {
+                document.getElementById('darkMode').checked=true;
+                document.querySelector('html').classList.add('dark');
+            }
+        </script>
         @yield('scripts')
     </body>
 </html>
