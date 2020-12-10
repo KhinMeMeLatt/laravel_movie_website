@@ -72,19 +72,53 @@
             }
         </style>
         <script>
+       
             document.addEventListener('DOMContentLoaded', function () {
             var checkbox = document.querySelector('input[type="checkbox"]');
             
+            function set_sun_theme () {
+                    var theme = document.getElementById('theme');
+                    theme.removeChild(theme.childNodes[0]);
+                    theme.setAttribute("xmlns","http://www.w3.org/2000/svg");
+                    theme.setAttribute("xmlns:xlink","http://www.w3.org/1999/xlink");
+                    theme.setAttribute("aria-hidden","true");
+                    theme.setAttribute("focusable","false");
+                    theme.setAttribute("width","1em");
+                    theme.setAttribute("height","1em");
+                    theme.setAttribute("style","-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg); margin: 7px 0 0 30px;");
+                    theme.setAttribute("preserveAspectRatio","xMidYMid meet");
+                    theme.setAttribute("viewBox","0 0 8 8");
+                    var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                    newElement.setAttribute("d","M4 0c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5S4.28 0 4 0zM1.5 1c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zm5 0c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zM4 2c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zM.5 3.5c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zm7 0c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zM1.5 6c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zm5 0c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zM4 7c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5S4.28 7 4 7z");
+                    newElement.setAttribute("fill","#FF0000");
+                    theme.appendChild(newElement);
+            }
+
             checkbox.addEventListener('change', function () {
                 if (checkbox.checked) {
                     document.querySelector('html').classList.add('dark');
-                    sessionStorage.setItem("darkMode","true");
+                    sessionStorage.setItem("darkMode","true"); 
+                    var theme = document.getElementById('theme');
+                    theme.removeChild(theme.childNodes[0]);
+                    theme.setAttribute("style","fill: var(--color-profile-color-modes-toggle-moon); margin: 7px 0 0 7px;");
+                    theme.setAttribute("aria-hidden","true");
+                    theme.setAttribute("width","14");
+                    theme.setAttribute("height","13");
+                    theme.setAttribute("viewBox","0 0 14 13");
+                    theme.setAttribute("xmlns","http://www.w3.org/2000/svg");
+                    var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                    newElement.setAttribute("fill-rule","evenodd");
+                    newElement.setAttribute("clip-rule","evenodd");
+                    newElement.setAttribute("d","M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z");
+                    theme.appendChild(newElement);
                 } else {
                     document.querySelector('html').classList.remove('dark')
                     sessionStorage.clear();
+                    set_sun_theme();
                 }
             });
             });
+
         </script>
 
         <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
@@ -111,7 +145,13 @@
                 <div class="flex flex-col md:flex-row items-center">
                     <label class="switch">
                         <input type="checkbox" id="darkMode" name="darkMode">
-                        <span class="slider round"></span>
+                        <span class="slider round" id="dark_switch">
+                            <svg id="theme"></svg>
+                            {{-- <svg style="fill: var(--color-profile-color-modes-toggle-moon); margin: 7px 0 0 7px;" aria-hidden="true" width="14" height="13" viewBox="0 0 14 13" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z"></path>
+                            </svg> --}}
+                            {{-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1em" height="1em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg); margin: 7px 0 0 30px;" preserveAspectRatio="xMidYMid meet" viewBox="0 0 8 8"><path d="M4 0c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5S4.28 0 4 0zM1.5 1c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zm5 0c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zM4 2c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zM.5 3.5c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zm7 0c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zM1.5 6c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zm5 0c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zM4 7c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5S4.28 7 4 7z" fill="#FF0000"/></svg> --}}
+                        </span>
                     </label>
 
                     <livewire:search-dropdown>
@@ -126,9 +166,39 @@
         @yield('content')
         <livewire:scripts>
         <script>
+            
             if(sessionStorage.darkMode) {
                 document.getElementById('darkMode').checked=true;
                 document.querySelector('html').classList.add('dark');
+                var theme = document.getElementById('theme');
+                theme.setAttribute("style","fill: var(--color-profile-color-modes-toggle-moon); margin: 7px 0 0 7px;");
+                theme.setAttribute("aria-hidden","true");
+                theme.setAttribute("width","14");
+                theme.setAttribute("height","13");
+                theme.setAttribute("viewBox","0 0 14 13");
+                theme.setAttribute("xmlns","http://www.w3.org/2000/svg");
+                var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                newElement.setAttribute("fill-rule","evenodd");
+                newElement.setAttribute("clip-rule","evenodd");
+                newElement.setAttribute("d","M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z");
+                theme.appendChild(newElement);
+
+            }
+            else {
+                var theme = document.getElementById('theme');
+                theme.setAttribute("xmlns","http://www.w3.org/2000/svg");
+                theme.setAttribute("xmlns:xlink","http://www.w3.org/1999/xlink");
+                theme.setAttribute("aria-hidden","true");
+                theme.setAttribute("focusable","false");
+                theme.setAttribute("width","1em");
+                theme.setAttribute("height","1em");
+                theme.setAttribute("style","-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg); margin: 7px 0 0 30px;");
+                theme.setAttribute("preserveAspectRatio","xMidYMid meet");
+                theme.setAttribute("viewBox","0 0 8 8");
+                var newElement = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                newElement.setAttribute("d","M4 0c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5S4.28 0 4 0zM1.5 1c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zm5 0c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zM4 2c-1.1 0-2 .9-2 2s.9 2 2 2s2-.9 2-2s-.9-2-2-2zM.5 3.5c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zm7 0c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zM1.5 6c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zm5 0c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5s-.22-.5-.5-.5zM4 7c-.28 0-.5.22-.5.5s.22.5.5.5s.5-.22.5-.5S4.28 7 4 7z");
+                newElement.setAttribute("fill","#FF0000");
+                theme.appendChild(newElement);
             }
         </script>
         @yield('scripts')
